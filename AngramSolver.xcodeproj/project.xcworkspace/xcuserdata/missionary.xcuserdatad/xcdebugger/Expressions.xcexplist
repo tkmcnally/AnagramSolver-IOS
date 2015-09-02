@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "DefinitionViewController.setDefinition(AEXMLDocument) -&gt; ():DefinitionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.doSearch(String, scope : String) -&gt; ():TableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:TableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.tableView(UITableView, titleForHeaderInSection : Int) -&gt; String?:TableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:TableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DawgAnagrammerRecurse:AnagramFinder.c">
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.addResult(String, scope : String) -&gt; ():TableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "mainHelper:AnagramFinder.c">
+      </ContextState>
+      <ContextState
+         contextName = "TableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():TableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "destination?.word">
+            </PersistentString>
+            <PersistentString
+               value = "section[indexPath.row].word">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DefinitionWebViewController.webView(WKWebView, didFinishNavigation : WKNavigation!) -&gt; ():DefinitionWebViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TextViewManager.getDefinition(AEXMLElement) -&gt; String:TextViewManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "defTag[&quot;dt&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "insertArray:AnagramFinder.c">
+      </ContextState>
+      <ContextState
+         contextName = "DefinitionWebViewController.viewDidLoad() -&gt; ():DefinitionWebViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DefinitionWebViewController.didReceiveMemoryWarning() -&gt; ():DefinitionWebViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
