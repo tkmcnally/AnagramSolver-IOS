@@ -32,8 +32,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, UIPopover
         filteredResults = [Int: [ResultPOJO]]()
         
         //Initialize DAWG indexing
-//        path = utils.getResourcePath("Traditional_Dawg_For_Word-List", fileType: "dat")
-   path = utils.getResourcePath("twl3_dawg", fileType: "dat")
+        path = utils.getResourcePath("twl3_dawg", fileType: "dat")
         utils = Utils()
         cPath = path.UTF8String
         initializeDawg(cPath)
