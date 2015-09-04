@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		814C1F9E1B97964A00EF0764 /* GeneralLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814C1F9D1B97964A00EF0764 /* GeneralLabelCell.swift */; settings = {ASSET_TAGS = (); }; };
+		814C1FA01B989CAD00EF0764 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814C1F9F1B989CAD00EF0764 /* NavigationController.swift */; settings = {ASSET_TAGS = (); }; };
+		814C1FA21B98B2D800EF0764 /* twl3_dawg.dat in Resources */ = {isa = PBXBuildFile; fileRef = 814C1FA11B98B23D00EF0764 /* twl3_dawg.dat */; };
+		814C1FA41B98B98D00EF0764 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814C1FA31B98B98D00EF0764 /* PopoverViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		81D4C4481B8FBD7E003B375D /* RESTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D4C4471B8FBD7E003B375D /* RESTManager.swift */; settings = {ASSET_TAGS = (); }; };
 		81D4C44A1B8FC134003B375D /* RestManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D4C4491B8FC134003B375D /* RestManagerTest.swift */; settings = {ASSET_TAGS = (); }; };
 		81D4C44C1B8FF27D003B375D /* TextViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D4C44B1B8FF27D003B375D /* TextViewManager.swift */; settings = {ASSET_TAGS = (); }; };
@@ -46,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		814C1F9D1B97964A00EF0764 /* GeneralLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralLabelCell.swift; sourceTree = "<group>"; };
+		814C1F9F1B989CAD00EF0764 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		814C1FA11B98B23D00EF0764 /* twl3_dawg.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = twl3_dawg.dat; sourceTree = "<group>"; };
+		814C1FA31B98B98D00EF0764 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		81D4C4471B8FBD7E003B375D /* RESTManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTManager.swift; sourceTree = "<group>"; };
 		81D4C4491B8FC134003B375D /* RestManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestManagerTest.swift; sourceTree = "<group>"; };
 		81D4C44B1B8FF27D003B375D /* TextViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewManager.swift; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 				81D4C4591B960F1E003B375D /* ResultCell.swift */,
 				81D4C45D1B96453A003B375D /* Definition.swift */,
 				81D4C4631B974968003B375D /* ResultPOJO.swift */,
+				814C1F9D1B97964A00EF0764 /* GeneralLabelCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -131,6 +140,8 @@
 				81FFBC081B8F87C300F426A9 /* TableViewController.swift */,
 				81FFBC0A1B8FA07700F426A9 /* DefinitionViewController.swift */,
 				81D4C45F1B969BE2003B375D /* DefinitionWebViewController.swift */,
+				814C1F9F1B989CAD00EF0764 /* NavigationController.swift */,
+				814C1FA31B98B98D00EF0764 /* PopoverViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 				81FFBBEE1B8F86F100F426A9 /* AngramSolverTests */,
 				81FFBBF91B8F86F100F426A9 /* AngramSolverUITests */,
 				81FFBBD81B8F86F100F426A9 /* Products */,
+				814C1FA11B98B23D00EF0764 /* twl3_dawg.dat */,
 				81D4C4551B90CE63003B375D /* Traditional_Dawg_For_Word-List.dat */,
 			);
 			sourceTree = "<group>";
@@ -293,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814C1FA21B98B2D800EF0764 /* twl3_dawg.dat in Resources */,
 				81D4C4581B90DE7D003B375D /* Traditional_Dawg_For_Word-List.dat in Resources */,
 				81FFBBE51B8F86F100F426A9 /* LaunchScreen.storyboard in Resources */,
 				81FFBBE21B8F86F100F426A9 /* Assets.xcassets in Resources */,
@@ -321,11 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814C1F9E1B97964A00EF0764 /* GeneralLabelCell.swift in Sources */,
 				81FFBC091B8F87C300F426A9 /* TableViewController.swift in Sources */,
 				81D4C44C1B8FF27D003B375D /* TextViewManager.swift in Sources */,
 				81D4C4601B969BE2003B375D /* DefinitionWebViewController.swift in Sources */,
 				81D4C45E1B96453A003B375D /* Definition.swift in Sources */,
+				814C1FA01B989CAD00EF0764 /* NavigationController.swift in Sources */,
 				81D4C4481B8FBD7E003B375D /* RESTManager.swift in Sources */,
+				814C1FA41B98B98D00EF0764 /* PopoverViewController.swift in Sources */,
 				81DD70361B8FB73F00CE1780 /* AEXML.swift in Sources */,
 				81D4C4641B974968003B375D /* ResultPOJO.swift in Sources */,
 				81FFBC0B1B8FA07700F426A9 /* DefinitionViewController.swift in Sources */,
