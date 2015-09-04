@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
+class TableViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: Properties
     @IBOutlet weak var searchBar: UISearchBar!
@@ -32,8 +32,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate, UIPopover
         filteredResults = [Int: [ResultPOJO]]()
         
         //Initialize DAWG indexing
-//        path = utils.getResourcePath("Traditional_Dawg_For_Word-List", fileType: "dat")
-   path = utils.getResourcePath("twl3_dawg", fileType: "dat")
+        path = utils.getResourcePath("twl3_dawg", fileType: "dat")
         utils = Utils()
         cPath = path.UTF8String
         initializeDawg(cPath)
@@ -247,31 +246,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate, UIPopover
             let section = filteredResults[index]!
             destination?.word = section[indexPath.row].word
         }
-    }
-    
-    func settings(sender: UIBarButtonItem) {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("PopoverViewController")
-        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-        popover.barButtonItem = sender
-        popover.delegate = self
-        presentViewController(vc, animated: true, completion:nil)
-    }
-
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
-    }
-    
-    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
-        self.navigationController!.topViewController!.navigationItem.rightBarButtonItem = btnDone
-        return navigationController
-    }
-    
-    func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
