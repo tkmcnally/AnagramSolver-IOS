@@ -18,14 +18,15 @@ class Utils: NSObject {
     
     func getWordValue(word: String) -> Int {
         var score = 0
-        for l in word.characters {
+        for l in Array(word) {
             score += letterValues[l]!
         }
         return score
     }
     
     func charValue(char: Character) -> Int {
-        return Int((String(char).unicodeScalars.first?.value)!)
+        return Int(Array(String(char).unicodeScalars)[0].value)
+//        return Int((String(char).unicodeScalars.first?.value)!)
     }
     
 }

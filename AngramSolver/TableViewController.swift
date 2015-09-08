@@ -134,25 +134,31 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     //UISearchBar: Set the maximum character length for a search
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let charValue = text.unicodeScalars.first?.value;
+        var charValue:Int
+        if(text == "") {
+            charValue = -1
+        } else {
+            charValue = Int(Array(text.unicodeScalars)[0].value)
+        }
         if charValue == 10 {
             return true
         }
+        let charValueInt = Int(charValue.value)
         /*if charValue == 63 && self.wildCardActivated == false {
             return true
         }*/
-        if (charValue >= 65 && charValue <= 90) || (charValue >= 97 && charValue <= 122) || charValue == nil {
-            return ((searchBar.text?.characters.count)! + text.characters.count - range.length <= 15)
+        if (charValueInt >= 65 && charValueInt <= 90) || (charValueInt >= 97 && charValueInt <= 122) || charValueInt == -1 {
+            return (count(searchBar.text) + count(text) - range.length <= 15)
         } else {
             return false
         }
     }
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        let scopes = self.searchBar.scopeButtonTitles as [String]!
+        let scopes = self.searchBar.scopeButtonTitles as! [String]!
         let selectedScope = scopes[self.searchBar.selectedScopeButtonIndex] as String
         sortMode = selectedScope
-        if(searchBar.text!.characters.count >= 1) {
+        if(count(searchBar.text!) >= 1) {
             doSearch(searchBar.text!, scope: selectedScope)
         } else {
             clearResults()
@@ -168,17 +174,17 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {_ = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("someSelector"), userInfo: nil, repeats: false)}
         
-        if searchText.containsString("?") {
+        if searchText.rangeOfString("?") != nil {
             if !self.wildCardActivated {
                 self.wildCardActivated = true
             }
         } else {
             self.wildCardActivated = false
         }
-        let scopes = self.searchBar.scopeButtonTitles as [String]!
+        let scopes = self.searchBar.scopeButtonTitles as! [String]!
         let selectedScope = scopes[self.searchBar.selectedScopeButtonIndex] as String
         sortMode = selectedScope
-        if(searchText.characters.count >= 1) {
+        if(count(searchText) >= 1) {
             doSearch(searchText, scope: selectedScope)
         } else {
             navigationItem.title = "Anagram Solver"
@@ -209,8 +215,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         resultSet.destroy()
-        lengthKeys.sortInPlace()
-        scoreKeys.sortInPlace()
+        //lengthKeys.sort({ count($0) > count($1) })
+        //scoreKeys.sort{ $0.score > $1.score }
+        //lengthKeys.sortInPlace()
+        //scoreKeys.sortInPlace()
+        sort(&lengthKeys)
+        sort(&scoreKeys)
         
         //Change title of this view to persist title change in the Back button.
         navigationItem.title = "Results"
@@ -222,13 +232,13 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         let s = utils.getWordValue(word)
 
         if scope == "Score" {
-            if !scoreKeys.contains(s) {
-                scoreKeys.append(s)
+            if !contains(scoreKeys, s) {
+                self.scoreKeys.append(s)
             }
             filterIndex = s
         } else {
-            let n = word.characters.count
-            if !lengthKeys.contains(n) {
+            let n = count(word)
+            if !contains(lengthKeys, n) {
                 lengthKeys.append(n)
             }
             filterIndex = n
@@ -240,7 +250,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             filteredResults[filterIndex] = [ResultPOJO]()
             filteredResults[filterIndex]?.append(ResultPOJO(word: word, score: s))
         }
-        filteredResults[filterIndex]?.sortInPlace({$0.word < $1.word})
+        filteredResults[filterIndex]?.sort {($0.word as String) < ($1.word as String)}
+        //sort(&results) {($0.word as String) < ($1.word as String)}
+//        filteredResults[filterIndex]?.sortInPlace({$0.word < $1.word})
     }
     
     //Clear the results list
