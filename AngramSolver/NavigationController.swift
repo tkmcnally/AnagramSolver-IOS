@@ -18,9 +18,6 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
         self.navigationBar.translucent = false
         self.navigationBar.barTintColor = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 1)
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
         self.navigationBar.tintColor = UIColor.whiteColor()
-        
-
     }
 }

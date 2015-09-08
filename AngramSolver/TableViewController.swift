@@ -12,7 +12,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: Properties
     @IBOutlet weak var searchBar: UISearchBar!
-    var messageLabel:UILabel = UILabel()
     
     var filteredResults: [Int: [ResultPOJO]]!
     var selectedWord: String!
@@ -25,6 +24,8 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var lengthKeys:[Int] = [Int]()
     var scoreKeys:[Int] = [Int]()
     
+    var wildCardActivated = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -36,11 +37,6 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         utils = Utils()
         cPath = path.UTF8String
         initializeDawg(cPath)
-        
-        //Initialize No Results Label
-        messageLabel = UILabel.init(frame: CGRect(x: self.view.center.x-15, y: self.view.frame.size.height/2, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        messageLabel.text = "No results found!"
-        messageLabel.tag = 404
         
         //Configure Navigation Bar
         navigationItem.title = "Anagram Solver"
@@ -55,12 +51,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         self.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
         self.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Selected)
         
-        // creates item with UIBarButtonSystemItemAction icon
-        let shareItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "settings:");
-        self.navigationItem.rightBarButtonItem = shareItem;
-        
-        
     }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,7 +85,11 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
      //UITableView: UITableViewCell for a [section][row]
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+       /* if searchBar.text!.isEmpty {
+            let cell:GeneralLabelCell = self.tableView.dequeueReusableCellWithIdentifier("NoResultsLabelCell", forIndexPath: indexPath) as! GeneralLabelCell
+            cell.labelCell.text = "Use '?' for a wildcard"
+            return cell
+        }*/
         if searchBar.text!.isEmpty || filteredResults.count == 0 {
             let cell:GeneralLabelCell = self.tableView.dequeueReusableCellWithIdentifier("NoResultsLabelCell", forIndexPath: indexPath) as! GeneralLabelCell
             cell.labelCell.text = "No results found!"
@@ -135,6 +135,12 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     //UISearchBar: Set the maximum character length for a search
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let charValue = text.unicodeScalars.first?.value;
+        if charValue == 10 {
+            return true
+        }
+        /*if charValue == 63 && self.wildCardActivated == false {
+            return true
+        }*/
         if (charValue >= 65 && charValue <= 90) || (charValue >= 97 && charValue <= 122) || charValue == nil {
             return ((searchBar.text?.characters.count)! + text.characters.count - range.length <= 15)
         } else {
@@ -157,8 +163,18 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     //Search Bar onChange()
+    
+    //Delay thread to allow first responder to be cleared
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {_ = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("someSelector"), userInfo: nil, repeats: false)}
         
+        if searchText.containsString("?") {
+            if !self.wildCardActivated {
+                self.wildCardActivated = true
+            }
+        } else {
+            self.wildCardActivated = false
+        }
         let scopes = self.searchBar.scopeButtonTitles as [String]!
         let selectedScope = scopes[self.searchBar.selectedScopeButtonIndex] as String
         sortMode = selectedScope
@@ -170,6 +186,11 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         }
         tableView.reloadData()
     }
+    
+    func someSelector() {
+        self.searchBar.resignFirstResponder()
+    }
+
     
     func doSearch(searchText: String, scope: String) {
         let resultSet:UnsafeMutablePointer<UnsafeMutablePointer<CChar>>  = mainHelper(NSString(UTF8String: searchText)!.UTF8String)

@@ -194,7 +194,7 @@ void DawgAnagrammerRecurse(int *DawgOfWar, int CurrentIndex, unsigned char *ToyW
         *ForTheCounter += 1;
         ToyWithMe[FillThisPosition + 1] = '\0';
         //printf("|%4d| - |%-15s|%s\n", *ForTheCounter, ToyWithMe, SizeOfBank? "\0": "--> TRUE ANAGRAM");
-       
+        MakeMeAllCapital(ToyWithMe);
         insertArray(resultSet, ToyWithMe);
         
     }

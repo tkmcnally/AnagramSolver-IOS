@@ -27,4 +27,5 @@ class Utils: NSObject {
     func charValue(char: Character) -> Int {
         return Int((String(char).unicodeScalars.first?.value)!)
     }
+    
 }

@@ -409,7 +409,7 @@ class AEXMLParser: NSObject, NSXMLParserDelegate {
         currentParent = currentElement
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
+    func parser(parser: NSXMLParser, foundCharacters string: String?) {
         currentValue += string ?? String()
         let newValue = currentValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         currentElement?.value = newValue == String() ? nil : newValue
