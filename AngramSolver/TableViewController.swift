@@ -62,6 +62,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
         
     }
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -135,6 +139,9 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     //UISearchBar: Set the maximum character length for a search
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let charValue = text.unicodeScalars.first?.value;
+        if charValue == 10 {
+            return true
+        }
         if (charValue >= 65 && charValue <= 90) || (charValue >= 97 && charValue <= 122) || charValue == nil {
             return ((searchBar.text?.characters.count)! + text.characters.count - range.length <= 15)
         } else {
@@ -158,6 +165,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     //Search Bar onChange()
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+         if searchText == "" {_ = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("someSelector"), userInfo: nil, repeats: false)}
         
         let scopes = self.searchBar.scopeButtonTitles as [String]!
         let selectedScope = scopes[self.searchBar.selectedScopeButtonIndex] as String
@@ -169,6 +177,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
             clearResults()
         }
         tableView.reloadData()
+    }
+    
+    func someSelector() {
+        self.searchBar.resignFirstResponder()
     }
     
     func doSearch(searchText: String, scope: String) {
